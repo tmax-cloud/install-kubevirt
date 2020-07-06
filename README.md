@@ -11,7 +11,7 @@
     1. 인터넷이 되는 환경에서 ```make download```를 수행하여 설치에 필요한 이미지들을 docker hub로부터 다운로드합니다. 
     2. $REGISTRY_ENDPOINT 환경변수에 image가 저장될 private registry 주소를 입력합니다.\
       ```export REGISTRY_ENDPOINT={registry url}```\
-      ```ex) export REGISTRY_ENDPOINT=10.0.0.1:5000
+      ```ex) export REGISTRY_ENDPOINT=10.0.0.1:5000```
     3. ```make upload```를 수행하여 images 디렉토리에 있는 image tar 파일들을 private registry에 push합니다.
     4. ```make install``` 을 수행하여 설치를 진행합니다.
 * public network 환경일 경우
