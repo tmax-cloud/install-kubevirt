@@ -13,9 +13,10 @@
       ```export REGISTRY_ENDPOINT={registry url}```\
       ```ex) export REGISTRY_ENDPOINT=10.0.0.1:5000```
     3. ```make upload```를 수행하여 images 디렉토리에 있는 image tar 파일들을 private registry에 push합니다.
-    4. ```make install``` 을 수행하여 설치를 진행합니다.
-* public network 환경일 경우
-    1. ```make install``` 을 수행하여 설치를 진행합니다.
+	4. 아래의 installation 과정을 수행합니다.
+* installation
+	1. virtvnc 서비스를 제공할 컨테이너 설정을 위해 yamls/virtvnc.yaml을 필요에 맞게 수정합니다. Service의 spec.ports[0].port 부분의 값이 cluster에서 노출되는 port입니다.
+    2. ```make install``` 을 수행하여 설치를 진행합니다.
 
 ## Kubevirt Uninstallation
 ### usage
@@ -23,7 +24,7 @@
 
 ## Installer Test
 ### prerequisite
-* test에는 [minikube](https://github.com/kubernetes/minikube)가 사용되므로 VM을 생성할 수 있는 환경이어야 합니다. 관련하여 [minikube install guide]([https://minikube.sigs.k8s.io/docs/start/](https://minikube.sigs.k8s.io/docs/start/))를 참고하세요.
+* test에는 [minikube](https://github.com/kubernetes/minikube)가 사용되므로 VM을 생성할 수 있는 환경이어야 합니다. 관련하여 [minikube install guide](https://minikube.sigs.k8s.io/docs/start/)를 참고하세요.
 * 배포된 kubevirt 환경에서 VM 생성 테스트를 위해선 nested virtualization option이 켜져있는지 확인해야 합니다.  [Nested Virtualization](https://docs.fedoraproject.org/en-US/quick-docs/using-nested-virtualization-in-kvm/) 을 참고하세요.\
   ```cat /sys/module/kvm_intel/parameters/nested``` 
   위의 명령어의 결과가 Y가 나오면 정상적으로 설정된 것입니다.
