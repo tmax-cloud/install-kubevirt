@@ -50,17 +50,25 @@ fi
 
 $RUN_CMD "docker run -itd -p 5000:5000 registry:latest"
 
-# push images to registry
-image_list=`cat images/image_list.txt`
+# push kubevirt images to private registry
+image_list=`cat images/kubevirt_images.txt`
 for image in $image_list;
 do
-	image_name=`echo $image | cut -d'/' -f2 | cut -d'.' -f1`:$TAG
+	image_name=`echo $image | cut -d'/' -f2 | cut -d'.' -f1`:$KUBEVIRT_TAG
 	echo uploads $GUEST_BASE_DIR/images/${image}.tar to $LOCAL_REGISTRY/$PREFIX/$image_name
 	$RUN_CMD "docker load -i $GUEST_BASE_DIR/images/${image}.tar"
 	$RUN_CMD "docker tag $PREFIX/$image_name $LOCAL_REGISTRY/$PREFIX/$image_name"
 	$RUN_CMD "docker push $LOCAL_REGISTRY/$PREFIX/$image_name"
 	echo done
 done
+# push virtvnc image to private registry
+image=virtvnc
+image_name=$image:$VIRTVNC_TAG
+echo uploads $GUEST_BASE_DIR/images/${image}.tar to $LOCAL_REGISTRY/$PREFIX/$image_name
+$RUN_CMD "docker load -i $GUEST_BASE_DIR/images/${image}.tar"
+$RUN_CMD "docker tag $PREFIX/$image_name $LOCAL_REGISTRY/$PREFIX/$image_name"
+$RUN_CMD "docker push $LOCAL_REGISTRY/$PREFIX/$image_name"
+echo done
 
 # delete images from docker because minikube is single node so that yamls can use cached docker images
 $RUN_CMD "docker images -q |xargs docker rmi -f &> /dev/null"
