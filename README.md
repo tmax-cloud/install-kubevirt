@@ -13,8 +13,9 @@
       ```export REGISTRY_ENDPOINT={registry url}```\
       ```ex) export REGISTRY_ENDPOINT=10.0.0.1:5000```
     3. ```make upload```를 수행하여 images 디렉토리에 있는 image tar 파일들을 private registry에 push합니다.
-    4. docker 또는 crio의 search registries에 $REGISTRY_ENDPOINT 가 등록되어 있지 않은 경우 아래의 명령어를 통해 kubevirt-operator.yaml을 수정합니다.\
+    4. docker 또는 crio의 search registries에 $REGISTRY_ENDPOINT 가 등록되어 있지 않은 경우 아래의 명령어를 통해 yaml을 수정합니다.\
       ```sed -i 's/tmaxcloudck/'$REGISTRY_ENDPOINT'\/tmaxcloudck/g' yamls/kubevirt-operator.yaml```
+      ```sed -i 's/tmaxcloudck/'$REGISTRY_ENDPOINT'\/tmaxcloudck/g' yamls/virtvnc.yaml```
     5. 아래의 installation 과정을 수행합니다.
 * installation
 	1. virtvnc 서비스를 제공할 컨테이너 설정을 위해 yamls/virtvnc.yaml을 필요에 맞게 수정합니다. Service의 spec.ports[0].port 부분의 값이 cluster에서 노출되는 port입니다.
