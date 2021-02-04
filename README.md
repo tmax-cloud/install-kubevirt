@@ -27,6 +27,10 @@
 * private 환경의 경우 kubevirt 설치를 위한 image들이 저장될 private registry가 생성되어 있어야 합니다. 또한 각 노드가 해당 registry에 접근할 수 있어야 합니다.
 * 아래의 모든 가이드는 manifest 디렉토리에서 수행합니다.
 
+## 추가 기능 설치
+* Kubevirt Failover Controller
+  * 설치를 위해 [Kubevirt Failover Controller 설치 가이드](README-failover-controller.md)를 참고해주세요
+
 ## 폐쇄망 구축 가이드
 ### usage
 1. public network로의 연결이 가능한 환경에서 ```make download```를 수행하여 설치에 필요한 이미지들을 docker hub로부터 다운로드합니다. 
