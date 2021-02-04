@@ -8,14 +8,7 @@ Tmax A&C, CK2-1 Team
 * failover-controller docker image
   * 버전: v1.5
   * `최신 버전 정보`는 [tmaxcloudck/kube-failover-controller docker hub](https://hub.docker.com/r/tmaxcloudck/kube-failover-controller/tags) 또는 [CHANGELOG-failover-controller.md](CHANGELOG-failover-controller.md) 파일에서 확인 가능합니다.
-
-### Prerequisite
-
-1. Since It uses `apps/v1` deployments, the Kubernetes version should be greater than `v1.9`.
-2. This Controller is tested on K8S 1.16.3 version, Kubevirt 0.26 version environment.
-3. import controller docker image before kubectl apply
-4. This yaml is used for 'root' user
-
+* `apps/v1` 를 사용함으로 Kubernetes 버전 `v1.9` 이상을 사용해야합니다..
 
 ## 폐쇄망 구축 가이드
 
@@ -69,6 +62,8 @@ $ kubectl get pods -n kubevirt-system
 
 ## 삭제 가이드
 
-You can clean up the created Controller with:
+* 다음의 명령을 실행하여 failover controller를 삭제한다.
 
-    kubectl delete -f manifests/failover-controller.yaml
+```sh
+kubectl delete -f manifests/failover-controller.yaml
+```
