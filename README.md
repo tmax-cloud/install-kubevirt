@@ -46,6 +46,9 @@
 ## 설치 가이드
 1. virtvnc 서비스를 제공할 컨테이너 설정을 위해 yamls/virtvnc.yaml을 필요에 맞게 수정합니다. Service의 spec.ports[0].port 부분의 값이 cluster에서 노출되는 port입니다.
 2. ```make install``` 을 수행하여 설치를 진행합니다.
+3. virt-api와 virt-controller deployments에 대한 replicas를 1로 하고 싶은 경우 아래의 명령어를 수행합니다.\
+  ```kubectl patch deployment virt-api --patch '{"spec":{"replicas":1}}' -n kubevirt```\
+  ```kubectl patch deployment virt-controller --patch '{"spec":{"replicas":1}}' -n kubevirt```
 
 ## 삭제 가이드
 1. ```make uninstall```을 수행하여 삭제를 진행합니다.
