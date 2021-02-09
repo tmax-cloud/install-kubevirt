@@ -84,13 +84,13 @@ spec:
       containers:
       - name: virtvnc
         image: tmaxcloudck/virtvnc:v0.1
-		resources:
-		  requests:
-		    memory: "200Mi"
-			cpu: "200m"
-		  limits:
-		    memory: "1000Mi"
-			cpu: "1000m"
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "200m"
+          limits:
+            memory: "1000Mi"
+            cpu: "1000m"
         livenessProbe:
           httpGet:
             port: 8001
