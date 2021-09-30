@@ -50,6 +50,10 @@
   ```kubectl patch deployment virt-api --patch '{"spec":{"replicas":1}}' -n kubevirt```\
   ```kubectl patch deployment virt-controller --patch '{"spec":{"replicas":1}}' -n kubevirt```
 
+## 인증서 갱신 가이드
+1. ```kubectl delete secrets --namespace kubevirt -l kubevirt.io```을 수행하여 기존 secret들을 삭제합니다.
+2. ```kubectl delete pods --namespace kubevirt -l kubevirt.io```을 수행하여 controller pod들이 새로운 인증서를 바탕으로 재생성되도록 합니다.
+
 ## 삭제 가이드
 1. ```make uninstall```을 수행하여 삭제를 진행합니다.
 
@@ -62,7 +66,7 @@
 * root가 아닌 user 계정으로 ```make test```를 수행해야 합니다. 
 * git clone한 kubevirt-installer 디렉토리 안의 모든 파일은 root가 아닌 user가 owner이어야 합니다.
 ### usage
-1. $MINIKUBE_CPU 환경변수에 minikube의 virtual cpu 수를 설정합니다. default는 2048로 설정되어 있습니다.\
+1. $MINIKUBE_CPU 환경변수에 minikube의 virtual cpu 수를 설정합니다. default는 2로 설정되어 있습니다.\
   ```export MINIKUBE_CPU={virtual cpu 수}```\
   ```ex) export MINIKUBE_CPU=2``` 
 2. $MINIKUBE_MEMORY 환경변수에 minikube의 memory를 설정합니다. default는 2048(MB)로 설정되어 있습니다.\
